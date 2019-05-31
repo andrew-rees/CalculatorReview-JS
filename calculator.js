@@ -1,47 +1,35 @@
-const operators = ['+', '-', '*', '/'];
-
 exports.create_calculator = function (operator) {
-  const numbers = [];
+  let numbers = []; 
 
   return {
+    clear_numbers: function () {
+      numbers = [];
+    },
     add_number: function (number) {
       numbers.push(number);
     },
     calculate: function () {
-      // Return zero if there are no numbers to calculate
-      if (numbers.length === 0) {
-        throw 'Cannot calculate a result because no numbers were given';
-      }
-
       let answer = numbers[0];
-
-      let i = 0;
-      numbers.forEach(function (number) {
-        if (i === 0) {
-          i++;
-          return;
-        }
-
-        switch (operator) {
+      for (var i = 1; i < numbers.length; i++) {
+        switch (operator) { 
           case '+':
-            answer = answer + number;
+            answer = answer + numbers[i];
             break;
           case '-':
-            answer = answer - number;
+            answer = answer - numbers[i];
             break;
           case '/':
-            answer = answer / number;
+            answer = answer / numbers[i];
             break;
-          default:
-            console.log("Invalid operator " + operator);
-        }
-        // console.log('index: ' + index);
-        // console.log('current answer: ' + answer);
-
-        i++;
-      });
-
+          case 'x':
+            answer = answer * numbers[i];
+            break;
+          case '*':
+            answer = answer * numbers[i];
+            break;
+        };
+      };
       return answer;
     }
-  }
-}
+  };
+};
